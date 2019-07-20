@@ -1,15 +1,14 @@
 {
   "name": "freedrums",
   "version": "1.0.0",
-  "description": "",
+  "description": "Use the Freedrums controllers in JavaScript",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "",
+  "author": "Charlie Gerard <charlie.a.gerard@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "noble": "^1.9.1"
+    "noble-mac": "https://github.com/Timeular/noble-mac.git"
   }
 }

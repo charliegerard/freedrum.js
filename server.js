@@ -2,24 +2,24 @@
  * @author Charlie Gerard / https://charliegerard.github.io/
  */
 
-var noble = require("noble");
+var noble = require("noble-mac");
 
-var daydreamDeviceName = "FD1 v7";
-// var daydreamDeviceId = '0e5a1523-ede8-4b33-a751-6ce34ec47c00';
-var daydreamDeviceId = '7c17f841b6744039891e50cb3ce98150';
-// var daydreamPrimaryServiceUuid = "0000180f00001000800000805f9b34fb";
-var daydreamPrimaryServiceUuid = "0e5a1523ede84b33a7516ce34ec47c00";
-var mainService = "03b80e5aede84b33a7516ce34ec4c700";
-var daydreamMainCharacteristicUuid = "0000000110001000800000805f9b34fb";
+var deviceName = "FD2 v8";
+let bluetoothLEMidi = '03b80e5a-ede8-4b33-a751-6ce34ec4c700';
+let freedrums = '0e5a1523-ede8-4b33-a751-6ce34ec47c00';
 
-var batteryService = '180f';
-var batteryChar = '2a19';
+/*
+The freedrums service returns 4 services that I "think" relate to these 4 things.
 
-var generic = "0000180000001000800000805f9b34fb";
+orientation
+drum conf
+status
+version - string value at 0
+*/
 
 var state = {};
 
-function DaydreamController(){
+function FreedrumsController(){
   noble.on('stateChange', function(state) {
     if (state === 'poweredOn') {
         noble.startScanning();
@@ -29,7 +29,7 @@ function DaydreamController(){
   });
 
   noble.on('discover', function(peripheral){
-    if(peripheral.id === daydreamDeviceId || peripheral.advertisement.localName === daydreamDeviceName){
+    if(peripheral.advertisement.localName === deviceName){
       console.log('peripheral id: ' + peripheral.id + ' found');
       console.log('Device name: ' + peripheral.advertisement.localName);
       noble.stopScanning();
@@ -44,50 +44,42 @@ function DaydreamController(){
     });
 
     peripheral.connect(function(error){
-      peripheral.discoverSomeServicesAndCharacteristics(['0e5a1523ede84b33a7516ce34ec47c00'], [], function(error, services, characteristics){
-        console.log(characteristics[2])
-        // characteristics[0].discoverCharacteristics(['0e5a1525ede84b33a7516ce34ec47c00'], function(error, char){
+      peripheral.discoverSomeServicesAndCharacteristics([bluetoothLEMidi], [], function(error, services, characteristics){
           characteristics[0].on("read", function(data, isNotification){
-            //orientation data?
-            console.log('data: ', data.toJSON().data)
-            // console.log('data', data)
+
+            // data is coming back as an array of 5 integers.
+            // ex: [ 128, 128, 153, 42, 36 ]
+            // [ Header byte, Timestamp byte, status byte, data byte, data byte]
+            // We don't really care about header and timestamp so they are set to 128
+            // Status is things like noteOn, noteOff, etc...
+            // 153: noteOn
+            // 137: noteOff
+            // 176: Continuous controller / Control Change (CC) - always 16 or 24 == controller & controller value
+
+            // data[3] is the MIDI note
+            // data[4] is the velocity or volume
+
+            if(data[2] === 153){
+              let midiData = data.toJSON().data;
+              let note = midiData[3];
+
+              if(note === 50){ // 50 is high tom
+                console.log('high tom')
+              } else if (note === 57){ //57 is crash cymbal 2
+                console.log('crash cymbal')
+              } else if (note === 51){ // 51 is Ryde cymbal
+                console.log("ryde cymbal")
+              }
+              
+              // console.log('note on!!!! ', data.toJSON().data)
+            }
             onStateChangeCallback(state);
           })
 
           characteristics[0].subscribe(function(err){
             console.log('subscribed')
           })
-
-        // })
       })
-
-      // peripheral.discoverServices(['0e5a1523ede84b33a7516ce34ec47c00'], function(error, services){
-
-      //     if(services.length > 0){
-      //         var primaryService = services[0];
-      //         console.log('service', services)
-
-      //         primaryService.discoverCharacteristics(['214f96ba37ba42b09658138de0f9afe7'], function(error, characteristics){
-      //           var mainCharacteristic = characteristics[0];
-      //           console.log(error)
-
-      //           for(var i = 0; i < characteristics.length; i++){
-      //             console.log('uuid', characteristics[i].uuid)
-      //           }
-
-      //           mainCharacteristic.on("read", function(data, isNotification){
-      //             if(data){
-      //               // console.log("battery level", data.toJSON().data[0])
-      //             }
-      //             onStateChangeCallback(state);
-      //           });
-
-      //           mainCharacteristic.subscribe(function(error) {
-      //             console.log('daydream controller notifications on');
-      //           });
-      //         })
-      //       }
-      //   });
     });
   }
 
@@ -100,7 +92,9 @@ function DaydreamController(){
   }
 }
 
-module.exports = function(){
-  return DaydreamController();
-}
+FreedrumsController()
+
+// module.exports = function(){
+//   return DaydreamController();
+// }
 
