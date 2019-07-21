@@ -1,5 +1,11 @@
 body{
-    background: #320740;
+    /* background: #320740; */
+    background: linear-gradient(to bottom, rgba(21, 24, 44, 0.952), rgba(42, 13, 80, 0.952));
+    /* background-image: url('assets/texture.png'); */
+    /* background-image: linear-gradient(to bottom, rgba(33, 39, 71, 0.952), rgba(61, 19, 117, 0.952)),  */
+    /* url('assets/fluid-bw.jpg'); */
+    /* background-size: cover; */
+    /* filter: hue-rotate(90deg); */
     color: white;
     display: flex;
     align-content: center;

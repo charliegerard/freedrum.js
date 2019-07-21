@@ -92,9 +92,7 @@ function FreedrumsController(){
   }
 }
 
-FreedrumsController()
-
-// module.exports = function(){
-//   return DaydreamController();
-// }
+module.exports = function(){
+  return FreedrumsController();
+}
 
