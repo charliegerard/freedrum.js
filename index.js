@@ -17,12 +17,13 @@ button.onclick = () => connect()
 const connect = () => {
     return navigator.bluetooth.requestDevice({
     filters: [
-        {name: deviceName},
+        {name: deviceNameFoot},
         {services: [bluetoothLEMidi]}
     ],
     })
     .then(device => {
         console.log('Device discovered', device.name);
+        console.log('Device discovered', device);
         return device.gatt.connect();
     })
     .then(server => {
