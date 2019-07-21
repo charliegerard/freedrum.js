@@ -5,7 +5,6 @@
 var deviceName = "FD2 v8";
 var deviceNameFoot = "FD2 v9";
 
-
 let bluetoothLEMidi = '03b80e5a-ede8-4b33-a751-6ce34ec4c700';
 const button = document.getElementsByTagName('button')[0];
 

@@ -19,7 +19,6 @@ class FreedrumStick {
       this.onDisconnected = this.onDisconnected.bind(this);
       this.handleData = this.handleData.bind(this);
       this.name = name;
-      this.connected = false;
     }
     
     request() {
@@ -40,7 +39,6 @@ class FreedrumStick {
       if (!this.device) {
         return Promise.reject('Device is not connected.');
       }
-      this.connected = true;
       return this.device.gatt.connect();
     }
     
@@ -98,7 +96,6 @@ class FreedrumStick {
 
     handlePedalEvents(command, note, volume){
         if(command === 153){
-            console.log("hit", note, volume);
             if(note === 44 && volume > 30){
                 kick.play()
                 document.body.style.backgroundColor = 'green';

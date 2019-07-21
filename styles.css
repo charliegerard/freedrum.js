@@ -1,0 +1,30 @@
+body{
+    background: #320740;
+    color: white;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+section{
+    text-align: center; 
+    width: 100%;
+}
+
+h1{
+    text-align: center;
+    font-family: monospace;
+    font-size: 4em;
+}
+h3{
+    font-family: Helvetica, sans-serif;
+    font-weight: 200;
+}
+button{
+    background: white;
+    padding: .5em 1em;
+    border: 1px solid blue;
+    border-radius: 5px;
+    font-size: .8em;
+}
