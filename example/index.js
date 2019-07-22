@@ -1,10 +1,13 @@
 let bluetoothLEMidi = '03b80e5a-ede8-4b33-a751-6ce34ec4c700';
 let bleMidiCharacteristic = '7772e5db-3868-4112-a1a9-f2669d106bf3';
 
-var cowbell = new Howl({src: ['assets/cowbell.wav']});
-var kick = new Howl({src: ['assets/kick.wav']});
-var snare = new Howl({src: ['assets/snare.wav']});
-var closedHiHat = new Howl({src: ['assets/closed-hi-hat.wav']});
+var cowbell = new Howl({src: ['../assets/cowbell.wav']});
+var kick = new Howl({src: ['../assets/kick.wav']});
+var snare = new Howl({src: ['../assets/snare.wav']});
+var closedHiHat = new Howl({src: ['../assets/closed-hi-hat.wav']});
+var bassDrum = new Howl({src: ['../assets/bass-drum.wav']});
+var hiHatCymbal = new Howl({src: ['../assets/hi-hat-cymbal.mp3']});
+var heavySnare = new Howl({src: ['../assets/heavy-snare.wav']});
 
 class FreedrumStick {
   constructor(name) {
@@ -41,7 +44,6 @@ class FreedrumStick {
     .then(characteristic => characteristic.startNotifications())
     .then(characteristic => {
       characteristic.addEventListener('characteristicvaluechanged', this.handleData);
-      return characteristic.readValue();
     })
   }
 
@@ -83,13 +85,15 @@ class FreedrumStick {
   handleDrumSticksEvents(command, note, volume){
     if(command === 153){
       if(note === 50){
-        cowbell.play()
-        cowbell.volume(volume);
+        hiHatCymbal.play()
+        hiHatCymbal.volume(volume);
+        drawTriangle();
       }
 
       if(note === 51){
-        snare.play()
-        snare.volume(volume);
+        heavySnare.play()
+        heavySnare.volume(volume);
+        drawCircle();
       }
     }
   }
@@ -97,14 +101,14 @@ class FreedrumStick {
   handlePedalEvents(command, note, volume){
     if(command === 153){
       if(note === 44){
-        kick.play()
-        kick.volume(volume);
+        bassDrum.play()
+        bassDrum.volume(volume);
         drawCircle();
       }
 
-      if(note === 46){
-        closedHiHat.play()
-        closedHiHat.volume(volume);
+      if(note ===50){
+        bassDrum.play()
+        bassDrum.volume(volume);
         drawTriangle();
       }
     }
