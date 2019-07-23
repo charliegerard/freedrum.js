@@ -1,5 +1,6 @@
 let bluetoothLEMidi = '03b80e5a-ede8-4b33-a751-6ce34ec4c700';
 let bleMidiCharacteristic = '7772e5db-3868-4112-a1a9-f2669d106bf3';
+let numSensors = 0;
 
 var cowbell = new Howl({src: ['../assets/cowbell.wav']});
 var kick = new Howl({src: ['../assets/kick.wav']});
@@ -35,10 +36,13 @@ class FreedrumStick {
     if (!this.device) {
       return Promise.reject('Device is not connected.');
     }
+    numSensors+=1;
     return this.device.gatt.connect();
   }
   
   getFreedrumData() {
+    const title = document.getElementsByTagName('main')[0];
+    title.classList.add('fade');
     return this.device.gatt.getPrimaryService(bluetoothLEMidi)
     .then(service => service.getCharacteristic(bleMidiCharacteristic))
     .then(characteristic => characteristic.startNotifications())
@@ -126,7 +130,13 @@ document.querySelector('button').addEventListener('click', event => {
   let currentSensor = getSensorToConnect()
   currentSensor.request()
   .then(_ => currentSensor.connect())
-  .then(_ => { currentSensor.getFreedrumData()})
+  .then(_ => { 
+    if(numSensors === 4){
+      const button = document.getElementsByTagName('button');
+      button.classList.add('fade');
+    }
+    currentSensor.getFreedrumData()
+  })
   .catch(error => { console.log(error) });
 });
 

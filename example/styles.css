@@ -1,36 +1,58 @@
 body{
-    /* background: #320740; */
     background: linear-gradient(to bottom, rgba(21, 24, 44, 0.952), rgba(42, 13, 80, 0.952));
-    /* background-image: url('assets/texture.png'); */
-    /* background-image: linear-gradient(to bottom, rgba(33, 39, 71, 0.952), rgba(61, 19, 117, 0.952)),  */
-    /* url('assets/fluid-bw.jpg'); */
-    /* background-size: cover; */
-    /* filter: hue-rotate(90deg); */
     color: white;
+}
+
+main{
     display: flex;
-    align-content: center;
-    justify-content: center;
     align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
 }
 
 section{
     text-align: center; 
     width: 100%;
+    height: fit-content;
+}
+
+#animations{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 h1{
     text-align: center;
-    font-family: monospace;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 4em;
+    margin: 0;
 }
+
 h3{
-    font-family: Helvetica, sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 200;
+    font-size: 1.3em;
 }
+
 button{
     background: white;
     padding: .5em 1em;
-    border: 1px solid blue;
+    margin: 1em .5em;
     border-radius: 5px;
     font-size: .8em;
+    display: block;
+}
+
+.fade{
+    animation: fadeOut .7s forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
 }

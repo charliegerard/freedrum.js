@@ -1,4 +1,4 @@
-var elem = document.getElementById('draw-animation');
+var elem = document.getElementById('animations');
 var two = new Two({ width: window.innerWidth, height: window.innerHeight}).appendTo(elem);
 
 const colors = ["cyan", "hotpink", "white", "yellow", "yellowgreen", "#cd3245", "#88cd32"];
