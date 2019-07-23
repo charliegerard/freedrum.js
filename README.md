@@ -1,4 +1,4 @@
-# Freedrum.js
+# Freedrum.js 🥁
 
 Play Air Drums and interact with the browser using the [Freedrum sensors](https://freedrum.rocks).
 
@@ -6,13 +6,20 @@ Play Air Drums and interact with the browser using the [Freedrum sensors](https:
 
 ![demo](demo.gif)
 
-Watch actual demo video [here](https://youtu.be/UrG_mlfvDjE).
+Watch an actual demo video [here](https://youtu.be/UrG_mlfvDjE).
 
-## Current status:
+## Current status
 
-Working but could be improved. More services could be added such as the one to get motion data but I don't have the time right now.
+Working but could be improved. More services could be added such as the one to get motion data but I don't have the time right now.😞
 
 *The Web Bluetooth version will only work with browsers that support the [Web Bluetooth API](https://caniuse.com/#feat=web-bluetooth).*
+
+
+## Features
+
+Currently, I've only had the time to work on **reading the BLE MIDI data** coming from the sensors.
+
+It should be possible to also write to the sensors if you want to reposition the space each drum pad takes for example... but I will try to look into that later.
 
 
 ## Installation
@@ -185,10 +192,14 @@ The status byte represents commands such as noteOn, noteOff, etc...
 
 I've mainly used the `bluetoothLEMidi` service but there are others available, including the `freedrums` service to get access to motion data.
 
+## Resources
+
 More info on these docs:
 
 * [Gist about Freedrums specs](https://gist.github.com/wvengen/7ebd29da38c08540832fb228c4628171)
 * Some info on the [Freedrum forum](http://forum.freedrum.rocks/t/freedrum-midi-commands/15)
+
+Sounds used in the example are from this [website](http://www.findsounds.com/ISAPI/search.dll)
 
 ---
 
