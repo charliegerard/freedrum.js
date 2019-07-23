@@ -1,18 +1,18 @@
 # Freedrum.js 🥁
 
-Play Air Drums and interact with the browser using the [Freedrum sensors](https://freedrum.rocks).
+Play Air Drums and interact with the browser using the <a href="https://freedrum.rocks" target="_blank">Freedrum sensors</a>.
 
 ## Demo:
 
 ![demo](demo.gif)
 
-Watch an actual demo video [here](https://youtu.be/UrG_mlfvDjE).
+Watch an actual demo video <a href="https://youtu.be/UrG_mlfvDjE" target="_blank">here</a>.
 
 ## Current status
 
 Working but could be improved. More services could be added such as the one to get motion data but I don't have the time right now.😞
 
-*The Web Bluetooth version will only work with browsers that support the [Web Bluetooth API](https://caniuse.com/#feat=web-bluetooth).*
+*The Web Bluetooth version will only work with browsers that support the <a href="https://caniuse.com/#feat=web-bluetooth" target="_blank">Web Bluetooth API</a>.*
 
 
 ## Features
@@ -196,10 +196,10 @@ I've mainly used the `bluetoothLEMidi` service but there are others available, i
 
 More info on these docs:
 
-* [Gist about Freedrums specs](https://gist.github.com/wvengen/7ebd29da38c08540832fb228c4628171)
-* Some info on the [Freedrum forum](http://forum.freedrum.rocks/t/freedrum-midi-commands/15)
+* <a href="https://gist.github.com/wvengen/7ebd29da38c08540832fb228c4628171" target="_blank">Gist about Freedrums specs</a>
+* Some info on the <a href="http://forum.freedrum.rocks/t/freedrum-midi-commands/15" target="_blank">Freedrum forum</a>
 
-Sounds used in the example are from this [website](http://www.findsounds.com/ISAPI/search.dll)
+Sounds used in the example are from this <a href="http://www.findsounds.com/ISAPI/search.dll" target="_blank">website</a>
 
 ---
 
