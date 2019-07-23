@@ -1,10 +1,10 @@
 {
-  "name": "freedrums",
+  "name": "freedrum",
   "version": "1.0.0",
   "description": "Use the Freedrums controllers in JavaScript",
-  "main": "freedrum.js",
+  "main": "freedrum-node.js",
   "scripts": {
-    "start": "node freedrum.js"
+    "start": "node freedrum-node.js"
   },
   "author": "Charlie Gerard <charlie.a.gerard@gmail.com> / https://twitter.com/@devdevcharlie",
   "license": "GNU GPLv3",

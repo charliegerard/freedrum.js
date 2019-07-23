@@ -1,10 +1,18 @@
 # Freedrum.js
 
-[WIP]
-
-Play Air Drums and interact with the browser using the Freedrum controllers.
+Play Air Drums and interact with the browser using the Freedrum sensors.
 
 ## Demo:
+
+![demo](demo.gif)
+
+Watch actual demo video here.
+
+## Current status:
+
+Working but could be improved. More services could be added such as the one to get motion data but I don't have the time right now.
+
+*The Web Bluetooth version will only work with browsers that support the Web Bluetooth API.*
 
 
 ## Installation
@@ -16,7 +24,7 @@ There are 2 ways to use Freedrum.js, either directly in the browser or as a Node
 Add the following script tag to your HTML file:
 
 ```html
-<script src=""></script>
+<script src="https://raw.githubusercontent.com/charliegerard/freedrum.js/master/freedrum.js"></script>
 ```
 
 ### Using Node.js
@@ -33,8 +41,9 @@ Each sensor has a unique uuid you can use to determine which sensor you're tryin
 
 ```js
 // These may be different.
-// You can also find devices by name "FD2 v8" and "FD2 v9" and then look for their id.
+// You can also find devices by name "FD2 v8" and "FD2 v9" and then look for their uuid.
 
+/*
 XrnS1FRG/q/kM7ecsfErcg==
 
 T/P6X0jDSadbdUXxRjjAVw==
@@ -42,6 +51,7 @@ T/P6X0jDSadbdUXxRjjAVw==
 6lASiqGNnfck4kO66nRlGw==
 
 dJTKMPg47ZLgP4PAEBuWZw==
+*/
 ```
 
 You need to start by instantiating a sensor:
@@ -52,7 +62,7 @@ const freedrumSensor = new FreedrumSensor(uuid);
 // example: new FreedrumSensor("XrnS1FRG/q/kM7ecsfErcg==");
 ```
 
-Then, to connect, the web bluetooth web API requires an input gesture by the user, in the following case, a click:
+Then, to connect, the web bluetooth API requires an input gesture by the user, in the following case, a click:
 
 ```js
 const freeDrumStickOne = new FreedrumSensor("XrnS1FRG/q/kM7ecsfErcg==");
@@ -78,6 +88,7 @@ This will connect to the sensor, and subscribe to the changes of data coming fro
 
 You can try the demo in the example folder if you want. Turn on each sensor, click on the `connect` button and connect each sensor to the page.
 
+---
 
 ### Using Node.js:
 
@@ -143,7 +154,7 @@ sensor.onStateChange(function(data){
 })
 ```
 
-Depending on the audio library you'll use with it, you might want to normalize the velocity, to do this, you can use the following formula:
+Depending on the audio library you'll use with it, you might want to normalize the velocity. To do this, you can use the following formula:
 
 ```js
 // Example for Howler.js

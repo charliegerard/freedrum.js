@@ -41,8 +41,6 @@ class FreedrumStick {
   }
   
   getFreedrumData() {
-    const title = document.getElementsByTagName('main')[0];
-    title.classList.add('fade');
     return this.device.gatt.getPrimaryService(bluetoothLEMidi)
     .then(service => service.getCharacteristic(bleMidiCharacteristic))
     .then(characteristic => characteristic.startNotifications())
@@ -91,7 +89,7 @@ class FreedrumStick {
       if(note === 50){
         hiHatCymbal.play()
         hiHatCymbal.volume(volume);
-        drawTriangle();
+        drawSquare();
       }
 
       if(note === 51){
@@ -107,12 +105,12 @@ class FreedrumStick {
       if(note === 44){
         bassDrum.play()
         bassDrum.volume(volume);
-        drawCircle();
+        drawLine();
       }
 
       if(note ===50){
-        bassDrum.play()
-        bassDrum.volume(volume);
+        closedHiHat.play()
+        closedHiHat.volume(volume);
         drawTriangle();
       }
     }
@@ -132,8 +130,10 @@ document.querySelector('button').addEventListener('click', event => {
   .then(_ => currentSensor.connect())
   .then(_ => { 
     if(numSensors === 4){
-      const button = document.getElementsByTagName('button');
+      const button = document.getElementsByTagName('button')[0];
       button.classList.add('fade');
+      const title = document.getElementsByTagName('main')[0];
+      title.classList.add('fade');
     }
     currentSensor.getFreedrumData()
   })
