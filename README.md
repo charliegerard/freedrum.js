@@ -1,18 +1,18 @@
 # Freedrum.js
 
-Play Air Drums and interact with the browser using the Freedrum sensors.
+Play Air Drums and interact with the browser using the [Freedrum sensors](https://freedrum.rocks).
 
 ## Demo:
 
 ![demo](demo.gif)
 
-Watch actual demo video here.
+Watch actual demo video [here](https://youtu.be/UrG_mlfvDjE).
 
 ## Current status:
 
 Working but could be improved. More services could be added such as the one to get motion data but I don't have the time right now.
 
-*The Web Bluetooth version will only work with browsers that support the Web Bluetooth API.*
+*The Web Bluetooth version will only work with browsers that support the [Web Bluetooth API](https://caniuse.com/#feat=web-bluetooth).*
 
 
 ## Installation
@@ -189,3 +189,7 @@ More info on these docs:
 
 * [Gist about Freedrums specs](https://gist.github.com/wvengen/7ebd29da38c08540832fb228c4628171)
 * Some info on the [Freedrum forum](http://forum.freedrum.rocks/t/freedrum-midi-commands/15)
+
+---
+
+### Hope it helps! 💚

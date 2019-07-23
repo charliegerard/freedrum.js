@@ -62,8 +62,6 @@ class FreedrumStick {
 
   handleData(event){
       let data = event.target.value;
-      // data will be a DataView type with byteLength of 5 because it contains 5 integers
-      // e.g: [128,128,153,50,0]
       let command = data.getUint8(2);
       let note = data.getUint8(3);
       let volume = data.getUint8(4);
