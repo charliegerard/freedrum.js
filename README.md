@@ -2,6 +2,8 @@
 
 Play Air Drums and interact with the browser using the <a href="https://freedrum.rocks" target="_blank">Freedrum sensors</a>.
 
+[Blog post](https://dev.to/devdevcharlie/playing-air-drums-in-javascript-47jg)
+
 ## Demo:
 
 ![demo](demo.gif)
