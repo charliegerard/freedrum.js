@@ -73,11 +73,11 @@ class FreedrumStick {
       // z = (volume - Math.min(0,127)) / (Math.max(0,127) - Math.min(0,127));
       let normalizedVolume = (volume - Math.min(0,127)) / (Math.max(0,127) - Math.min(0,127));
   
-      if(this.device.id === "XrnS1FRG/q/kM7ecsfErcg==" || this.device.id === "T/P6X0jDSadbdUXxRjjAVw=="){
+      if(this.device.name === "FD2 v8"){
         this.handleDrumSticksEvents(command, note, normalizedVolume);
       } 
       
-      if(this.device.id === "6lASiqGNnfck4kO66nRlGw==" || this.device.id === "dJTKMPg47ZLgP4PAEBuWZw=="){
+      if(this.device.name === "FD2 v9"){
         this.handlePedalEvents(command, note, normalizedVolume);
       } 
   }
@@ -127,12 +127,12 @@ document.querySelector('button').addEventListener('click', event => {
   currentSensor.request()
   .then(_ => currentSensor.connect())
   .then(_ => { 
-    if(numSensors === 4){
-      const button = document.getElementsByTagName('button')[0];
-      button.classList.add('fade');
-      const title = document.getElementsByTagName('main')[0];
-      title.classList.add('fade');
-    }
+    // if(numSensors === 4){
+    //   const button = document.getElementsByTagName('button')[0];
+    //   button.classList.add('fade');
+    //   const title = document.getElementsByTagName('main')[0];
+    //   title.classList.add('fade');
+    // }
     currentSensor.getFreedrumData()
   })
   .catch(error => { console.log(error) });
